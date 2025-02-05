@@ -1,0 +1,13 @@
+.my-progress {
+  background-color: red;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: none;
+}
+.my-progress div {
+  background-color: aquamarine;
+  text-align: end;
+  padding-right: 5px;
+  display: flex;
+}

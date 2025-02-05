@@ -1,0 +1,64 @@
+.main {
+  background-color: #fafafa;
+  width: 100%;
+  height: calc(92vh - 1rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  padding-top: 1rem;
+  gap: 1rem;
+}
+
+.box-total {
+  background-color: transparent;
+  width: 90%;
+  height: 18%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.box-total h1 {
+  font-size: 3rem !important;
+  font-weight: 400;
+}
+.total-title {
+  font-weight: lighter;
+}
+
+.box-budget {
+  background-color: #fff;
+  width: 90%;
+  height: 15%;
+  border-radius: 10px;
+  border: solid 1px #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.budget-top {
+  /* background-color: gray; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 70%;
+  width: 100%;
+}
+.budget-bottom {
+  /* background-color: blue; */
+  height: 30%;
+  display: flex;
+  width: 90%;
+  /* justify-content: center; */
+  align-items: center;
+  /* flex: 1; */
+}
+
+
+.box-last-month {
+  background-color: beige;
+  width: 90%;
+  min-height: 25%;
+  max-height: max-content;
+}
