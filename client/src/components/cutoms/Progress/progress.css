@@ -1,13 +1,16 @@
 .my-progress {
-  background-color: red;
+  background-color: #eeeeee;
   width: 100%;
+  height: 1.5rem;
   border-radius: 10px;
   overflow: hidden;
   flex-shrink: none;
 }
 .my-progress div {
-  background-color: aquamarine;
-  text-align: end;
-  padding-right: 5px;
+  transition: all ease-in-out 0.3s;
+  border-radius: 1rem;
   display: flex;
+  justify-content: center;
+  color: #fff;
+  overflow: hidden;
 }
