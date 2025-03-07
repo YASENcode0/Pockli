@@ -1,0 +1,40 @@
+.choice-label {
+   /* background-color: red; */
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 0 2rem;
+   width: calc(100% - 4rem);
+   height: 4rem;
+}
+.choice {
+   position: relative;
+}
+.choice div {
+   position: absolute;
+   right: 0;
+   top: 2rem;
+   background-color: #fff;
+   width: 6rem;
+   height: fit-content;
+   padding: 1rem 0;
+   border-radius: 0.5rem;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   list-style: none;
+   z-index: 5;
+   box-shadow: 5px 5px 20px 2px #00000018;
+}
+.choice h4 {
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   gap: 1rem;
+}
+.choice h4 span {
+   transition: all ease-in-out 0.2s;
+}
+.choice-on h4 span {
+   rotate: 180deg;
+}
