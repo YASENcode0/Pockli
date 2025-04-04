@@ -4,7 +4,7 @@ import { IoIosArrowDown } from "react-icons/io";
 
 export default function Choice({
    title = "title",
-   list = ["hello"],
+   list = ["choice1"],
    defaultChoice = "choice",
 }) {
    const [onOf, setOnOf] = useState(false);
