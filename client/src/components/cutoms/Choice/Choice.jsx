@@ -3,9 +3,11 @@ import "./choice.css";
 import { IoIosArrowDown } from "react-icons/io";
 
 export default function Choice({
+   name,
    title = "title",
    list = ["choice1"],
    defaultChoice = "choice",
+   handle,
 }) {
    const [onOf, setOnOf] = useState(false);
    const [selected, setSelected] = useState(null);
@@ -33,6 +35,7 @@ export default function Choice({
                            onClick={() => {
                               setSelected(item);
                               setOnOf(false);
+                              handle(item, name);
                            }}
                         >
                            {item}
