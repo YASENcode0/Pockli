@@ -65,6 +65,7 @@ export default function PopUp({ totalCount, forEdit, setForEdit }) {
       );
       const cards = JSON.parse(localStorage.getItem("cards")) || [];
       saveCount();
+
       if (forEdit) {
         const allCards = cards?.map((card) => {
           if (card.id === newCard.id) {
@@ -73,7 +74,9 @@ export default function PopUp({ totalCount, forEdit, setForEdit }) {
             return card;
           }
         });
+
         localStorage.setItem("cards", JSON.stringify(allCards));
+
       } else {
         cards.push(newCard);
         localStorage.setItem("cards", JSON.stringify(cards));

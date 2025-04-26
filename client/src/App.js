@@ -12,83 +12,88 @@ import { popUpContext } from "./components/Contexts/PopUpContext";
 import { useEffect, useState, useRef } from "react";
 
 export default function App() {
-   const [modeOn, setModeOn] = useState(false);
-   const [forEdit, setForEdit] = useState(null);
-   const [budgetPopUp, setBudgetPopUp] = useState(false);
-   const [popUp, setPopUp] = useState(false);
-   const [budgetPlan, setBudgetPlan] = useState({
-      title: "",
-      budget: 10,
-   });
-   // const [totalCount, setTotalCount] = useState(0);
-   const totalCount = useRef(0);
-   function setTotalCount(value) {
-      console.log(value);
-      totalCount.current = value;
-   }
-   function switchMode() {
-      setModeOn(!modeOn);
-      console.log("hello mode")
-   }
+  const [modeOn, setModeOn] = useState(false);
+  const [forEdit, setForEdit] = useState(null);
+  const [budgetPopUp, setBudgetPopUp] = useState(false);
+  const [popUp, setPopUp] = useState(false);
+  const [budgetPlan, setBudgetPlan] = useState({
+    title: "car budget",
+    budget: null,
+  });
+  //fix budget bugs
+  // const [totalCount, setTotalCount] = useState(0);
+  const totalCount = useRef(0);
 
-   (function () {
-      setTotalCount(JSON.parse(localStorage.getItem("MySettings"))?.total || 0);
-      console.log("App render");
-   })();
+  function setTotalCount(value) {
+    console.log(value);
+    totalCount.current = value;
+  }
+  function switchMode() {
+    setModeOn(!modeOn);
+    console.log("hello mode");
+  }
 
-   function editCard(value = null) {
-      setForEdit(value);
-      setPopUp(true);
-      // console.log(value)
-   }
+  (function () {
+    setTotalCount(JSON.parse(localStorage.getItem("MySettings"))?.total || 0);
+    console.log("App render");
+  })();
 
-   function getAllCards() {
-      const cards = localStorage.getItem("cards");
-      return JSON.parse(cards);
-   }
+  function editCard(value = null) {
+    setForEdit(value);
+    setPopUp(true);
+    // console.log(value)
+  }
 
-   return (
-      <div className={`App ${modeOn && "night-mode"}`}>
-         <popUpContext.Provider value={{ popUp, setPopUp }}>
-            <Router>
-               <Routes>
-                  <Route
-                     path="/"
-                     element={
-                        <Main
-                           budgetPlan={budgetPlan}
-                           getAllCards={getAllCards}
-                           count={totalCount.current}
-                           setBudgetPopUp={setBudgetPopUp}
-                        />
-                     }
-                  />
-                  <Route
-                     path="/all"
-                     element={
-                        <All
-                           editCard={editCard}
-                           totalCount={totalCount}
-                           getAllCards={getAllCards}
-                        />
-                     }
-                  />
-                  <Route path="/settings" element={<Settings switchMode={switchMode}/>} />
-               </Routes>
-               <PopUp
-                  setForEdit={setForEdit}
-                  forEdit={forEdit}
-                  totalCount={totalCount}
-                  setTotalCount={setTotalCount}
-               />
-               <PlanPopUp
-                  setBudgetPlan={setBudgetPlan}
-                  budgetPopUp={budgetPopUp}
+  function getAllCards() {
+    const cards = localStorage.getItem("cards");
+    return JSON.parse(cards);
+  }
+
+  return (
+    <div className={`App ${modeOn && "night-mode"}`}>
+      <popUpContext.Provider value={{ popUp, setPopUp }}>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  budgetPlan={budgetPlan}
+                  getAllCards={getAllCards}
+                  count={totalCount.current}
                   setBudgetPopUp={setBudgetPopUp}
-               />
-               <Footer />
-            </Router>
-         </popUpContext.Provider>
-      </div>
-   );
+                />
+              }
+            />
+            <Route
+              path="/all"
+              element={
+                <All
+                  editCard={editCard}
+                  totalCount={totalCount}
+                  getAllCards={getAllCards}
+                />
+              }
+            />
+            <Route
+              path="/settings"
+              element={<Settings switchMode={switchMode} />}
+            />
+          </Routes>
+          <PopUp
+            setForEdit={setForEdit}
+            forEdit={forEdit}
+            totalCount={totalCount}
+            setTotalCount={setTotalCount}
+          />
+          <PlanPopUp
+            setBudgetPlan={setBudgetPlan}
+            budgetPopUp={budgetPopUp}
+            setBudgetPopUp={setBudgetPopUp}
+          />
+          <Footer />
+        </Router>
+      </popUpContext.Provider>
+    </div>
+  );
 }

@@ -20,7 +20,7 @@ export default function Progress({ max, current = 0 }) {
     <div className="my-progress">
       <div
         style={{
-          width: `${percentage}%`,
+          width: `${(current <= 0 ? 5 : 0) + percentage}%`,
           backgroundColor: `${rangeColor}`,
         }}
       >

@@ -4,10 +4,15 @@ import Progress from "../cutoms/Progress/Progress";
 
 /// last month speend breoplem ,  lastCard useLess
 
-export default function Main({ count = 0, getAllCards, setBudgetPopUp , budgetPlan }) {
+export default function Main({
+  count = 0,
+  getAllCards,
+  setBudgetPopUp,
+  budgetPlan,
+}) {
   const spend = useRef(0);
   const monthlyBudget = useRef(0);
-  
+
   const [categories, steCategories] = useState({
     food: 0,
     fuel: 0,
