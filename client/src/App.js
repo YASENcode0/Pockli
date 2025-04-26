@@ -17,10 +17,24 @@ export default function App() {
   const [budgetPopUp, setBudgetPopUp] = useState(false);
   const [popUp, setPopUp] = useState(false);
   const [budgetPlan, setBudgetPlan] = useState({
-    title: "car budget",
+    title: "",
     budget: null,
   });
-  //fix budget bugs
+
+  function HandelSetBudgetPlan(plan) {
+    console.log(plan)
+    setBudgetPlan(plan)
+    const myBudget = JSON.parse(localStorage.getItem("MySettings")) || {};
+    const newMySettings = { myBudget, budgetPlan: plan };
+    localStorage.setItem("MySettings", JSON.stringify(newMySettings));
+  }
+
+  useEffect(()=>{
+    const budget = JSON.parse(localStorage.getItem("MySettings")).budgetPlan
+    console.log(budget)
+    setBudgetPlan(budget)
+  },[])
+
   // const [totalCount, setTotalCount] = useState(0);
   const totalCount = useRef(0);
 
@@ -87,7 +101,7 @@ export default function App() {
             setTotalCount={setTotalCount}
           />
           <PlanPopUp
-            setBudgetPlan={setBudgetPlan}
+            setBudgetPlan={HandelSetBudgetPlan}
             budgetPopUp={budgetPopUp}
             setBudgetPopUp={setBudgetPopUp}
           />

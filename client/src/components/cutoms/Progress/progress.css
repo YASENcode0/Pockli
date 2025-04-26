@@ -13,4 +13,5 @@
   justify-content: center;
   color: #fff;
   overflow: hidden;
+  min-width: 2.5rem !important;
 }

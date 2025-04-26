@@ -10,7 +10,6 @@ export default function PlanPopUp({
     title: "",
     budget: 0,
   });
-
   function addPlan() {
     setBudgetPlan(plan);
     closePopUp();
@@ -25,7 +24,7 @@ export default function PlanPopUp({
       <div className="planPopUp pop-up">
         <div className="plan-pop-up-div">
           <div>
-            <label>test1</label>
+            <label>plan name</label>
             <input
               type="text"
               onChange={(e) => {
@@ -34,7 +33,7 @@ export default function PlanPopUp({
             />
           </div>
           <div>
-            <label>test1</label>
+            <label>plan amount</label>
             <input
               type="number"
               onChange={(e) => {
