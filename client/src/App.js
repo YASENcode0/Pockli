@@ -18,7 +18,7 @@ export default function App() {
   const [popUp, setPopUp] = useState(false);
   const [budgetPlan, setBudgetPlan] = useState({
     title: "",
-    budget: null,
+    budget: 0,
   });
 
   function HandelSetBudgetPlan(plan) {
@@ -30,7 +30,7 @@ export default function App() {
   }
 
   useEffect(()=>{
-    const budget = JSON.parse(localStorage.getItem("MySettings")).budgetPlan
+    const budget = JSON.parse(localStorage.getItem("MySettings"))?.budgetPlan
     console.log(budget)
     setBudgetPlan(budget)
   },[])

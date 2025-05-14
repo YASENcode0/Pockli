@@ -35,7 +35,7 @@ export default function Main({
          }
       });
 
-      const total = budgetPlan.budget - spend.current;
+      const total = budgetPlan?.budget - spend.current;
       monthlyBudget.current = total;
       return total;
    }
@@ -73,13 +73,13 @@ export default function Main({
                      </div>
                      <div className="budget-top-right">
                         <p>Monthly budget</p>
-                        <h3>$ {budgetPlan.budget}</h3>
+                        <h3>$ {budgetPlan?.budget}</h3>
                      </div>
                   </div>
                   <div className="budget-bottom">
                      <Progress
-                        max={budgetPlan.budget}
-                        current={budgetPlan.budget - monthlyBudget.current}
+                        max={budgetPlan?.budget}
+                        current={budgetPlan?.budget - monthlyBudget.current}
                      />
                   </div>
                </div>
