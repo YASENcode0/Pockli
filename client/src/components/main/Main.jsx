@@ -45,7 +45,7 @@ export default function Main({
    }
 
    function GetSpendByCategory(category) {
-      const categorySpent = getAllCards().filter((card) => {
+      const categorySpent = getAllCards()?.filter((card) => {
          return card?.category === category;
       });
 
