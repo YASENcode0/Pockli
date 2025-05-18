@@ -49,6 +49,7 @@ export default function Main({
          return card?.category === category;
       });
 
+      console.log(categorySpent)
       return categorySpent;
    }
 
@@ -113,7 +114,10 @@ function LaseMonthCard({ spent }) {
          <p>20/20/2025</p>
          <p>
             {spent?.reduce((sum, card) => {
-               return sum + card?.amount;
+
+
+               if(new Date(card?.date).getMonth() === new Date().getMonth())
+               return card?.type ?  sum - card?.amount : sum + card?.amount;
             }, 0)}
          </p>
       </div>
