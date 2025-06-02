@@ -1,6 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./main.css";
 import Progress from "../cutoms/Progress/Progress";
+///icons
+import { LuFuel } from "react-icons/lu";
+import { IoFastFood } from "react-icons/io5";
+import { TbMoneybag } from "react-icons/tb";
+import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { PiMoneyWavyFill } from "react-icons/pi";
+import { MdHistory } from "react-icons/md";
+///
 
 /// last month speend breoplem ,  lastCard useLess
 
@@ -49,7 +57,7 @@ export default function Main({
          return card?.category === category;
       });
 
-      console.log(categorySpent)
+      console.log(categorySpent);
       return categorySpent;
    }
 
@@ -93,31 +101,56 @@ export default function Main({
          )}
          <div className="box-last-month">
             <div>
-               <div>icon</div>
-               <h2>title</h2>
-               <p>$ 700</p>
+               <div>
+                  <MdHistory />
+               </div>
+               <h3>last month spent by Category</h3>
             </div>
             <div className="last-month-box2">
-               <LaseMonthCard spent={GetSpendByCategory("income")} />
-               <LaseMonthCard spent={GetSpendByCategory("shopping")} />
-               <LaseMonthCard spent={GetSpendByCategory("bills")} />
+               <LaseMonthCard
+                  spent={GetSpendByCategory("income")}
+                  name={"income"}
+               />
+               <LaseMonthCard
+                  spent={GetSpendByCategory("shopping")}
+                  name={"shopping"}
+               />
+               <LaseMonthCard
+                  spent={GetSpendByCategory("bills")}
+                  name={"bills"}
+               />
             </div>
          </div>
       </div>
    );
 }
+function getSpendIcon(name) {
+   switch (name) {
+      case "fuel":
+         return <LuFuel />;
+      case "income":
+         return <PiMoneyWavyFill />;
+      case "shopping":
+         return <HiOutlineShoppingBag />;
+      case "food":
+         return <IoFastFood />;
+      case "bills":
+         return <TbMoneybag />;
+      default:
+         return <img src="" alt="icon" />;
+   }
+}
 
-function LaseMonthCard({ spent }) {
+function LaseMonthCard({ spent, name }) {
+   console.log(spent);
    return (
       <div className="last-month-box1">
-         <div> icon </div>
-         <p>20/20/2025</p>
+         <div className={`${name} card-icon`}>{getSpendIcon(name)}</div>
+         <p>{new Date(spent[0]?.date).toLocaleString("en-ZA")}</p>
          <p>
             {spent?.reduce((sum, card) => {
-
-
-               if(new Date(card?.date).getMonth() === new Date().getMonth())
-               return card?.type ?  sum - card?.amount : sum + card?.amount;
+               if (new Date(card?.date).getMonth() === new Date().getMonth())
+                  return card?.type ? sum - card?.amount : sum + card?.amount;
             }, 0)}
          </p>
       </div>
