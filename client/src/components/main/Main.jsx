@@ -61,6 +61,16 @@ export default function Main({
       return categorySpent;
    }
 
+   function GetUsedCategory() {
+      const uniqueByType = getAllCards().reduce((acc, item) => {
+         if (!acc.some((i) => i.category === item.category)) {
+            acc.push(item);
+         }
+         return acc;
+      }, []);
+      return uniqueByType;
+   }
+
    return (
       <div className="main">
          <div className="box-total">
@@ -100,25 +110,18 @@ export default function Main({
             </div>
          )}
          <div className="box-last-month">
-            <div>
-               <div>
-                  <MdHistory />
-               </div>
+            <div className="box-last-month-title">
+               <MdHistory />
                <h3>last month spent by Category</h3>
             </div>
             <div className="last-month-box2">
-               <LaseMonthCard
-                  spent={GetSpendByCategory("income")}
-                  name={"income"}
-               />
-               <LaseMonthCard
-                  spent={GetSpendByCategory("shopping")}
-                  name={"shopping"}
-               />
-               <LaseMonthCard
-                  spent={GetSpendByCategory("bills")}
-                  name={"bills"}
-               />
+               {GetUsedCategory()?.map((card, i) => (
+                  <LaseMonthCard
+                     key={i}
+                     spent={GetSpendByCategory(card?.category)}
+                     name={card?.category}
+                  />
+               ))}
             </div>
          </div>
       </div>
@@ -142,17 +145,16 @@ function getSpendIcon(name) {
 }
 
 function LaseMonthCard({ spent, name }) {
-   console.log(spent);
+   const spends = spent?.reduce((sum, card) => {
+      if (new Date(card?.date).getMonth() === new Date().getMonth())
+         return card?.type ? sum + card?.amount : sum - card?.amount;
+   }, 0);
+
    return (
       <div className="last-month-box1">
          <div className={`${name} card-icon`}>{getSpendIcon(name)}</div>
          <p>{new Date(spent[0]?.date).toLocaleString("en-ZA")}</p>
-         <p>
-            {spent?.reduce((sum, card) => {
-               if (new Date(card?.date).getMonth() === new Date().getMonth())
-                  return card?.type ? sum - card?.amount : sum + card?.amount;
-            }, 0)}
-         </p>
+         <p className={spends > 0 ? "green" : "red"}>{spends}</p>
       </div>
    );
 }
