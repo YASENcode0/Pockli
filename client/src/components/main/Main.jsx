@@ -62,7 +62,7 @@ export default function Main({
    }
 
    function GetUsedCategory() {
-      const uniqueByType = getAllCards().reduce((acc, item) => {
+      const uniqueByType = getAllCards()?.reduce((acc, item) => {
          if (!acc.some((i) => i.category === item.category)) {
             acc.push(item);
          }
