@@ -128,17 +128,6 @@ export default function Main({
           ))}
         </div>
       </div>
-      <button
-        onClick={() => {
-          try {
-            throw new Error("an err");
-          } catch (err) {
-            console.error("err in 132");
-          }
-        }}
-      >
-        click
-      </button>
     </div>
   );
 }
