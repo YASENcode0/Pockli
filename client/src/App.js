@@ -10,6 +10,8 @@ import PlanPopUp from "./components/PlanPopUp/PlanPopUp";
 // contexts
 import { popUpContext } from "./components/Contexts/PopUpContext";
 import { useEffect, useState, useRef } from "react";
+// ErrorBoundary
+import ErrorBoundary from "./components/ErrorBoundary";
 
 export default function App() {
   const [modeOn, setModeOn] = useState(false);
@@ -22,18 +24,18 @@ export default function App() {
   });
 
   function HandelSetBudgetPlan(plan) {
-    console.log(plan)
-    setBudgetPlan(plan)
+    console.log(plan);
+    setBudgetPlan(plan);
     const myBudget = JSON.parse(localStorage.getItem("MySettings")) || {};
     const newMySettings = { myBudget, budgetPlan: plan };
     localStorage.setItem("MySettings", JSON.stringify(newMySettings));
   }
 
-  useEffect(()=>{
-    const budget = JSON.parse(localStorage.getItem("MySettings"))?.budgetPlan
-    console.log(budget)
-    setBudgetPlan(budget)
-  },[])
+  useEffect(() => {
+    const budget = JSON.parse(localStorage.getItem("MySettings"))?.budgetPlan;
+    console.log(budget);
+    setBudgetPlan(budget);
+  }, []);
 
   // const [totalCount, setTotalCount] = useState(0);
   const totalCount = useRef(0);
@@ -71,12 +73,14 @@ export default function App() {
             <Route
               path="/"
               element={
-                <Main
-                  budgetPlan={budgetPlan}
-                  getAllCards={getAllCards}
-                  count={totalCount.current}
-                  setBudgetPopUp={setBudgetPopUp}
-                />
+                <ErrorBoundary>
+                  <Main
+                    budgetPlan={budgetPlan}
+                    getAllCards={getAllCards}
+                    count={totalCount.current}
+                    setBudgetPopUp={setBudgetPopUp}
+                  />
+                </ErrorBoundary>
               }
             />
             <Route
